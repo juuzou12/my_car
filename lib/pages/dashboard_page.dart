@@ -15,6 +15,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'add_property.dart';
 import 'find_location_page.dart';
+import 'house_details_page.dart';
 
 class dashboard_page extends StatefulWidget{
   final double currentLat;
@@ -65,119 +66,129 @@ class _dashboard_pageState extends State<dashboard_page> {
 
   /*widgets used for UI in the dashboard*/
   Widget historyLocationUI(){
-    return Container(
-      width: Get.width,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: const Color(0xfff1f1f1)),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: const [
-                    Icon(Icons.location_on_outlined),
-                    SizedBox(width: 8,),
-                    text_widget(
-                      color: 0xff707070,
-                      fontWeight: FontWeight.w400,
-                      textAlign: TextAlign.center,
-                      font: "Lato",
-                      fontSize: 17,
-                      text: "My Home Style",
-                    ),
-                  ],
-                ),
-                const text_widget(
-                  color: 0xffFF9C27B0,
-                  fontWeight: FontWeight.w500,
-                  textAlign: TextAlign.center,
-                  font: "Lato",
-                  fontSize: 15,
-                  text: "Visit again",
-                ),
-              ],
-            ),
-            Row(
-              children: const [
-                Icon(Icons.timer,color: Colors.white,),
-                SizedBox(width: 8,),
-                text_widget(
-                  color: 0xff707070,
-                  fontWeight: FontWeight.w500,
-                  textAlign: TextAlign.center,
-                  font: "Lato",
-                  fontSize: 13,
-                  text: "12/12/2020:18:45",
-                ),
+    return InkWell(
+      child: Container(
+        width: Get.width,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: const Color(0xfff1f1f1)),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: const [
+                      Icon(Icons.location_on_outlined),
+                      SizedBox(width: 8,),
+                      text_widget(
+                        color: 0xff707070,
+                        fontWeight: FontWeight.w400,
+                        textAlign: TextAlign.center,
+                        font: "Lato",
+                        fontSize: 17,
+                        text: "My Home Style",
+                      ),
+                    ],
+                  ),
+                  const text_widget(
+                    color: 0xffFF9C27B0,
+                    fontWeight: FontWeight.w500,
+                    textAlign: TextAlign.center,
+                    font: "Lato",
+                    fontSize: 15,
+                    text: "Visit again",
+                  ),
+                ],
+              ),
+              Row(
+                children: const [
+                  Icon(Icons.timer,color: Colors.white,),
+                  SizedBox(width: 8,),
+                  text_widget(
+                    color: 0xff707070,
+                    fontWeight: FontWeight.w500,
+                    textAlign: TextAlign.center,
+                    font: "Lato",
+                    fontSize: 13,
+                    text: "12/12/2020:18:45",
+                  ),
 
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
+      onTap: (){
+        Get.to(house_details_page());
+      },
     );
   }
   Widget activeLocationUI(){
-    return Container(
-      width: Get.width,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: const Color(0xffFF9C27B0)),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: const [
-                    Icon(Icons.location_on_outlined),
-                    SizedBox(width: 8,),
-                    text_widget(
-                      color: 0xff707070,
-                      fontWeight: FontWeight.w400,
-                      textAlign: TextAlign.center,
-                      font: "Lato",
-                      fontSize: 17,
-                      text: "My Home Style",
-                    ),
-                  ],
-                ),
-                const text_widget(
-                  color: 0xffFF9C27B0,
-                  fontWeight: FontWeight.w500,
-                  textAlign: TextAlign.center,
-                  font: "Lato",
-                  fontSize: 15,
-                  text: "currently active",
-                ),
-              ],
-            ),
-            Row(
-              children: const [
-                Icon(Icons.timer,color: Colors.white,),
-                SizedBox(width: 8,),
-                text_widget(
-                  color: 0xff707070,
-                  fontWeight: FontWeight.w500,
-                  textAlign: TextAlign.center,
-                  font: "Lato",
-                  fontSize: 13,
-                  text: "12/12/2020:18:45",
-                ),
+    return InkWell(
+      child: Container(
+        width: Get.width,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: const Color(0xffFF9C27B0)),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: const [
+                      Icon(Icons.location_on_outlined),
+                      SizedBox(width: 8,),
+                      text_widget(
+                        color: 0xff707070,
+                        fontWeight: FontWeight.w400,
+                        textAlign: TextAlign.center,
+                        font: "Lato",
+                        fontSize: 17,
+                        text: "My Home Style",
+                      ),
+                    ],
+                  ),
+                  const text_widget(
+                    color: 0xffFF9C27B0,
+                    fontWeight: FontWeight.w500,
+                    textAlign: TextAlign.center,
+                    font: "Lato",
+                    fontSize: 15,
+                    text: "currently active",
+                  ),
+                ],
+              ),
+              Row(
+                children: const [
+                  Icon(Icons.timer,color: Colors.white,),
+                  SizedBox(width: 8,),
+                  text_widget(
+                    color: 0xff707070,
+                    fontWeight: FontWeight.w500,
+                    textAlign: TextAlign.center,
+                    font: "Lato",
+                    fontSize: 13,
+                    text: "12/12/2020:18:45",
+                  ),
 
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
+      onTap: (){
+        Get.to(house_details_page());
+      },
     );
   }
   Widget historyTenantUI(){
@@ -886,10 +897,12 @@ class _dashboard_pageState extends State<dashboard_page> {
                     fontSize: 16,
                     text: "Switch to user profile",
                   ),
-                  onTap: (){
+                  onTap: ()async{
+                    SharedPreferences prefs = await SharedPreferences.getInstance();
                     setState(() {
                       containerHeight=400;
                       userMode='userMode';
+                      prefs.setString("userMode", userMode!);
                     });
                   },
                 ),

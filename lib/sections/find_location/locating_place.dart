@@ -186,7 +186,7 @@ class _locating_placeState extends State<locating_place> {
           ),
         ),
         onTap: (){
-          Get.to(payment_section());
+          Get.to(const payment_section(state: "paymentForHome",));
         },
       ),
     );

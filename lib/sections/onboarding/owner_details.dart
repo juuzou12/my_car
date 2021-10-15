@@ -1,3 +1,4 @@
+import 'package:bnbs_project/sections/find_location/payment_section.dart';
 import 'package:bnbs_project/widgets/button_widgets.dart';
 import 'package:bnbs_project/widgets/formbuildtextfield.dart';
 import 'package:bnbs_project/widgets/text_widget.dart';
@@ -84,16 +85,21 @@ class _owner_detailsStae extends State<owner_details> {
                 ),
               ),
               const SizedBox(height: 50,),
-              const button_widgets(color:0xffe1163c,height: 55,width: 320,radius: 10,borderColor: 0xffFF9C27B0,widget:Center(
-                child: text_widget(
-                  color: 0xffFFFFFF,
-                  fontWeight: FontWeight.w600,
-                  textAlign: TextAlign.center,
-                  font: "Lato",
-                  fontSize: 20,
-                  text: "Next",
-                ),
-              )),
+              InkWell(
+                child: const button_widgets(color:0xffe1163c,height: 55,width: 320,radius: 10,borderColor: 0xffFF9C27B0,widget:Center(
+                  child: text_widget(
+                    color: 0xffFFFFFF,
+                    fontWeight: FontWeight.w600,
+                    textAlign: TextAlign.center,
+                    font: "Lato",
+                    fontSize: 20,
+                    text: "Next",
+                  ),
+                )),
+                onTap: (){
+                  Get.to(const payment_section(state: "addHomePayment",));
+                },
+              ),
             ],
           ),
         ),

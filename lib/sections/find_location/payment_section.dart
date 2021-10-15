@@ -10,6 +10,9 @@ import 'package:location/location.dart';
 import 'package:lottie/lottie.dart';
 
 class payment_section extends StatefulWidget{
+  final String state;
+
+  const payment_section({Key? key, required this.state}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return _payment_sectionState();
@@ -22,10 +25,12 @@ class _payment_sectionState extends State<payment_section> {
     {
       "value":"m-pesa",
       "name":"Mpesa services",
-    },{
+    },
+    {
       "value":"google-pay",
       "name":"Google pay",
-    },{
+    },
+    {
       "value":"other-payment",
       "name":"Other methods...(card,other mno, etc)",
     },
