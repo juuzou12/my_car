@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:location/location.dart';
 class map_section extends StatefulWidget{
   final double currentLat;
@@ -24,7 +23,6 @@ class _map_sectionState extends State<map_section> {
   * .....this is to get direction between two location*/
   // Markers to show points on the map
   Map<MarkerId, Marker> markers = {};
-  PolylinePoints polylinePoints = PolylinePoints();
   Map<PolylineId, Polyline> polylines = {};
   Location location = new Location();
 
@@ -61,26 +59,7 @@ class _map_sectionState extends State<map_section> {
     Marker(markerId: markerId, icon: descriptor, position: position);
     markers[markerId] = marker;
   }
-  void _getPolyline() async {
-    List<LatLng> polylineCoordinates = [];
 
-    var result = await polylinePoints.getRouteBetweenCoordinates("", -1.286389, 36.817223, -1.310341, 36.833737);
-    result.forEach((PointLatLng point) {
-      polylineCoordinates.add(LatLng(point.latitude, point.longitude));
-    });
-    _addPolyLine(polylineCoordinates);
-  }
-  _addPolyLine(List<LatLng> polylineCoordinates) {
-    PolylineId id = PolylineId("poly");
-    Polyline polyline = Polyline(
-      polylineId: id,
-      color: Colors.purple,
-      points: polylineCoordinates,
-      width: 8,
-    );
-    polylines[id] = polyline;
-    setState(() {});
-  }
 
 
 
@@ -101,7 +80,6 @@ class _map_sectionState extends State<map_section> {
       "destination",
       BitmapDescriptor.defaultMarkerWithHue(90),
     );
-    _getPolyline();
     super.initState();
   }
 
