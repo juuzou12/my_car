@@ -1,3 +1,5 @@
+import 'package:bnbs_project/functions/api_calls.dart';
+import 'package:bnbs_project/pages/walkthrough_page.dart';
 import 'package:bnbs_project/widgets/button_widgets.dart';
 import 'package:bnbs_project/widgets/formbuildtextfield.dart';
 import 'package:bnbs_project/widgets/text_widget.dart';
@@ -15,6 +17,7 @@ class signup_page extends StatefulWidget{
 }
 
 class _signup_pageState extends State<signup_page> {
+  final _formKey = GlobalKey<FormBuilderState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,34 +67,49 @@ class _signup_pageState extends State<signup_page> {
 
                     ]
                 ),
+                key: _formKey,
               ),
               const SizedBox(
                 height: 16,
               ),
-              InkWell(
-                child: const text_widget(
-                  color: 0xffFF9C27B0,
-                  fontWeight: FontWeight.w700,
-                  textAlign: TextAlign.center,
-                  font: "Lato",
-                  fontSize: 15,
-                  text: "Login to account",
-                ),
-                onTap: (){
-                  Get.back();
-                },
+              const text_widget(
+                color: 0xffFF9C27B0,
+                fontWeight: FontWeight.w700,
+                textAlign: TextAlign.center,
+                font: "Lato",
+                fontSize: 15,
+                text: "Login to account",
               ),
               const SizedBox(
                 height: 16,
               ),
-              const button_widgets(color:0xffFF9C27B0,height: 50,width: 150,radius: 100,borderColor: 0xffFF9C27B0,widget:Center(
-                child: text_widget(
-                  color: 0xffFFFFFF,
-                  fontWeight: FontWeight.w500,
-                  textAlign: TextAlign.center,
-                  font: "Lato",
-                  fontSize: 14,
-                  text: "Create account",
+               button_widgets(color:0xffFF9C27B0,height: 50,width: 150,radius: 100,borderColor: 0xffFF9C27B0,widget:Center(
+                child: InkWell(
+                  child: const text_widget(
+                    color: 0xffFFFFFF,
+                    fontWeight: FontWeight.w500,
+                    textAlign: TextAlign.center,
+                    font: "Lato",
+                    fontSize: 14,
+                    text: "Create account",
+                  ),
+                  onTap: () async {
+                    if(_formKey.currentState!.saveAndValidate()){
+                      print(_formKey);
+                      api_calls api = api_calls(context);
+                      api.createUser(_formKey.currentState!.value["name"], _formKey.currentState!.value["password"], (){
+                        /*successful*/
+                        api.addUser(_formKey.currentState!.value["name"], _formKey.currentState!.value["password"], (){
+                          printError(info: "Registered successfully!!");
+                          Get.to(walthrough_page());
+                        }, (){
+                          printError(info: "Failed to add user!");
+                        });}, () {
+                        /*failed to register*/
+                        printError(info: "Oops! Something went wrong. Try again!");
+                      });
+                    }
+                  },
                 ),
               )),
             ],

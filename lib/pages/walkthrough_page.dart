@@ -1,9 +1,12 @@
+import 'package:bnbs_project/functions/api_calls.dart';
+import 'package:bnbs_project/pages/forgot_password.dart';
 import 'package:bnbs_project/widgets/button_widgets.dart';
 import 'package:bnbs_project/widgets/formbuildtextfield.dart';
 import 'package:bnbs_project/widgets/text_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:location/location.dart';
 import 'package:lottie/lottie.dart';
@@ -20,6 +23,7 @@ class walthrough_page extends StatefulWidget{
 }
 
 class _walthrough_pageState extends State<walthrough_page> {
+  final _formKey = GlobalKey<FormBuilderState>();
   Location location = new Location();
 
   bool? _serviceEnabled;
@@ -181,6 +185,7 @@ class _walthrough_pageState extends State<walthrough_page> {
                         formType: "text",dropDownList: [])
                   ]
               ),
+              key: _formKey,
             ),
             const SizedBox(
               height: 30,
@@ -188,13 +193,18 @@ class _walthrough_pageState extends State<walthrough_page> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children:  [
-                const text_widget(
-                  color: 0xff000000,
-                  fontWeight: FontWeight.w700,
-                  textAlign: TextAlign.center,
-                  font: "Lato",
-                  fontSize: 15,
-                  text: "Forgot password",
+                 InkWell(
+                  child: const text_widget(
+                    color: 0xff000000,
+                    fontWeight: FontWeight.w700,
+                    textAlign: TextAlign.center,
+                    font: "Lato",
+                    fontSize: 15,
+                    text: "Forgot password",
+                  ),
+                  onTap: (){
+                    Get.to(forgot_password());
+                  },
                 ),
                 InkWell(
                   child: const text_widget(
@@ -226,7 +236,48 @@ class _walthrough_pageState extends State<walthrough_page> {
                 ),
               )),
               onTap: (){
-                getCurrentLocation();
+                if(_formKey.currentState!.saveAndValidate()) {
+                  /*login logic*/
+                  api_calls api=api_calls(context);
+                  api.loginUser(_formKey.currentState!.value["name"], _formKey.currentState!.value["password"], (){
+                    /*successfulFunction*/
+                    printError(info: "Successful login");
+                    Fluttertoast.showToast(
+                        msg: "Successful login",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.green,
+                        textColor: Colors.white,
+                        fontSize: 16.0
+                    );
+                  }, (){
+                    /*failedFunction*/
+                    printError(info: "Unsuccessful login");
+                    Fluttertoast.showToast(
+                        msg: "Unsuccessful login",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.green,
+                        textColor: Colors.white,
+                        fontSize: 16.0
+                    );
+                  }, (){
+                    /*wrongCredentialsFunction*/
+                    printError(info: "Wrong credentials");
+                    Fluttertoast.showToast(
+                        msg: "Wrong credentials",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIosWeb: 2,
+                        backgroundColor: Colors.green,
+                        textColor: Colors.white,
+                        fontSize: 16.0
+                    );
+                  });
+                  getCurrentLocation();
+                }
               },
             ),
 
