@@ -76,7 +76,7 @@ class _map_sectionState extends State<map_section> {
 
     // Add destination marker
     _addMarker(
-      LatLng( 	-1.310341,36.833737),
+      const LatLng( 	-1.310341,36.833737),
       "destination",
       BitmapDescriptor.defaultMarkerWithHue(90),
     );
