@@ -67,7 +67,7 @@ class _signup_pageState extends State<signup_page> {
 
                     ]
                 ),
-                key: _formKey,
+                key: _formKey ,
               ),
               const SizedBox(
                 height: 16,
