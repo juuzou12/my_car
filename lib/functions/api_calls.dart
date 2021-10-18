@@ -61,7 +61,7 @@ class api_calls {
   }
 
   Future<void> addItem(final String StandAlone, final String Apartment, final String active,
-      final String duration, final String companyState, final String companyNo, final String paymentMethod,)
+      final String duration, final String companyState, final String companyNo, final String paymentMethod)
   async {
     DocumentReference documentReference = FirebaseFirestore.instance.collection('users').doc(firebaseAuth.currentUser!.uid).collection('request').doc();
     Map<String, dynamic> data = <String, dynamic>{
