@@ -1,3 +1,4 @@
+import 'package:bnbs_project/functions/api_calls.dart';
 import 'package:bnbs_project/pages/dashboard_page.dart';
 import 'package:bnbs_project/widgets/button_widgets.dart';
 import 'package:bnbs_project/widgets/text_widget.dart';
@@ -151,6 +152,8 @@ class _payment_sectionState extends State<payment_section> {
                 ),
               )),
               onTap: (){
+                api_calls api = api_calls(context);
+                api.addItem('', '', '', 'null', '', '', 'active');
                 getCurrentLocation();
               },
             ),

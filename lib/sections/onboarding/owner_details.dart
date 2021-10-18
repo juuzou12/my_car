@@ -1,3 +1,4 @@
+import 'package:bnbs_project/functions/api_calls.dart';
 import 'package:bnbs_project/sections/find_location/payment_section.dart';
 import 'package:bnbs_project/widgets/button_widgets.dart';
 import 'package:bnbs_project/widgets/formbuildtextfield.dart';
@@ -97,6 +98,8 @@ class _owner_detailsStae extends State<owner_details> {
                   ),
                 )),
                 onTap: (){
+                  api_calls api = api_calls(context);
+                  api.addHome('', '', '');
                   Get.to(const payment_section(state: "addHomePayment",));
                 },
               ),

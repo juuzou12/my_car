@@ -6,10 +6,10 @@ class api_calls {
 
   final BuildContext context;
   var firebaseAuth= FirebaseAuth.instance;
-  CollectionReference users = FirebaseFirestore.instance.collection('users');
   final _auth = FirebaseAuth.instance;
 
   final fireStoreInstance = FirebaseFirestore.instance;
+  final CollectionReference _reference = FirebaseFirestore.instance.collection('preferences');
 
   api_calls(this.context);
 
@@ -17,11 +17,14 @@ class api_calls {
   void loginUser(String email, String password, successFunction, failedFunction,
       wrongCred) {
     firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
-
-    if (firebaseAuth.currentUser != null) {
-      successFunction();
-    } else {
-      failedFunction();
+    try {
+      if (firebaseAuth.currentUser != null) {
+        successFunction();
+      } else {
+        failedFunction();
+      }
+    } on FirebaseAuthException catch (exception) {
+      print('This is a fail $exception');
     }
   }
 
@@ -42,7 +45,7 @@ class api_calls {
   /*register api call.....*/
   Future <void> addUser(final String name, final String password,
       successFunction, failedFunction) {
-    return users.doc(firebaseAuth.currentUser!.uid)
+    return fireStoreInstance.collection('users').doc(firebaseAuth.currentUser!.uid)
         .set({
       'name': name,
       'password': password,
@@ -56,4 +59,38 @@ class api_calls {
     final results= await _auth.sendPasswordResetEmail(email: email);
     Navigator.of(context).pop();
   }
+
+  Future<void> addItem(final String StandAlone, final String Apartment, final String active,
+      final String duration, final String companyState, final String companyNo, final String paymentMethod,)
+  async {
+    DocumentReference documentReference = FirebaseFirestore.instance.collection('users').doc(firebaseAuth.currentUser!.uid).collection('request').doc();
+    Map<String, dynamic> data = <String, dynamic>{
+      "houseType": StandAlone,
+      "purpose": Apartment,
+      "duration": duration,
+      "companyState": companyState,
+      "companyNo": companyNo,
+      "paymentMethod": paymentMethod,
+      "status" : active,
+    };
+    await documentReference
+        .set(data)
+        .whenComplete(() => print("Preferences added"))
+        .catchError((e) => print(e));
+  }
+
+  Future<void> addHome(final String HomeDetails, final String OwnerDetails, final Payment)async
+  {
+    DocumentReference documentReference = FirebaseFirestore.instance.collection('users').doc(firebaseAuth.currentUser!.uid).collection('Home').doc();
+    Map<String, dynamic> data = <String, dynamic>{
+      "homeDetails": HomeDetails,
+      "ownerDetails": OwnerDetails,
+      "payment": Payment,
+    };
+    await documentReference
+        .set(data)
+        .whenComplete(() => print("Preferences added"))
+        .catchError((e) => print(e));
+  }
+
 }

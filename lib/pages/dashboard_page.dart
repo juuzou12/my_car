@@ -5,6 +5,7 @@ import 'package:bnbs_project/sections/dashboard/map_section.dart';
 import 'package:bnbs_project/sections/reports/pie_chart.dart';
 import 'package:bnbs_project/widgets/button_widgets.dart';
 import 'package:bnbs_project/widgets/text_widget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,7 +22,8 @@ class dashboard_page extends StatefulWidget{
   final double currentLat;
   final double currentLong;
 
-  const dashboard_page({Key? key, required this.currentLat, required this.currentLong}) : super(key: key);
+
+  dashboard_page({Key? key, required this.currentLat, required this.currentLong}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return _dashboard_pageState();
@@ -30,7 +32,6 @@ class dashboard_page extends StatefulWidget{
 }
 
 class _dashboard_pageState extends State<dashboard_page> {
-
 
   double containerHeight=400;
   List<dynamic>searchList=[
@@ -356,14 +357,7 @@ class _dashboard_pageState extends State<dashboard_page> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const text_widget(
-                          color: 0xff000000,
-                          fontWeight: FontWeight.w700,
-                          textAlign: TextAlign.center,
-                          font: "Lato",
-                          fontSize: 20,
-                          text: "Good Afternoon!",
-                        ),
+                        greetingMessage(),
                         InkWell(
                           child: text_widget(
                             color: 0xff000000,
@@ -391,7 +385,7 @@ class _dashboard_pageState extends State<dashboard_page> {
                           textAlign: TextAlign.center,
                           font: "Lato",
                           fontSize: 15,
-                          text: "sample@email.com",
+                          text: "sample@gmail.com",
                         ),
                       ],
                     ),
@@ -538,15 +532,8 @@ class _dashboard_pageState extends State<dashboard_page> {
                       ],
                     ),
                     Row(
-                      children: const [
-                        text_widget(
-                          color: 0xff000000,
-                          fontWeight: FontWeight.w700,
-                          textAlign: TextAlign.center,
-                          font: "Lato",
-                          fontSize: 20,
-                          text: "Good Afternoon!",
-                        ),
+                      children: [
+                        greetingMessage()
                       ],
                     ),
                     const SizedBox(
@@ -560,7 +547,7 @@ class _dashboard_pageState extends State<dashboard_page> {
                           textAlign: TextAlign.center,
                           font: "Lato",
                           fontSize: 15,
-                          text: "sample@email.com",
+                          text: "sample@gmail.com",
                         ),
                       ],
                     ),
@@ -696,15 +683,8 @@ class _dashboard_pageState extends State<dashboard_page> {
                       ],
                     ),
                     Row(
-                      children: const [
-                        text_widget(
-                          color: 0xff000000,
-                          fontWeight: FontWeight.w700,
-                          textAlign: TextAlign.center,
-                          font: "Lato",
-                          fontSize: 20,
-                          text: "Good Afternoon!",
-                        ),
+                      children: [
+                        greetingMessage()
                       ],
                     ),
                     const SizedBox(
@@ -718,7 +698,7 @@ class _dashboard_pageState extends State<dashboard_page> {
                           textAlign: TextAlign.center,
                           font: "Lato",
                           fontSize: 15,
-                          text: "sample@email.com",
+                          text: '',
                         ),
                       ],
                     ),
@@ -993,15 +973,8 @@ class _dashboard_pageState extends State<dashboard_page> {
                       ),
                     ):const SizedBox(height: 50,),
                     Row(
-                      children: const [
-                        text_widget(
-                          color: 0xff000000,
-                          fontWeight: FontWeight.w700,
-                          textAlign: TextAlign.center,
-                          font: "Lato",
-                          fontSize: 20,
-                          text: "Good Afternoon!",
-                        ),
+                      children:  [
+                        greetingMessage()
                       ],
                     ),
                     const SizedBox(
@@ -1015,7 +988,7 @@ class _dashboard_pageState extends State<dashboard_page> {
                           textAlign: TextAlign.center,
                           font: "Lato",
                           fontSize: 15,
-                          text: "sample@email.com",
+                          text: "sample@gmail.com",
                         ),
                       ],
                     ),
@@ -1066,5 +1039,19 @@ class _dashboard_pageState extends State<dashboard_page> {
     /*checking the user mode if its business or user..*/
   }
 
+  Widget greetingMessage(){
+
+    var timeNow = DateTime.now().hour;
+
+    if (timeNow <= 12) {
+      return Text('Good Morning');
+    } else if ((timeNow > 12) && (timeNow <= 16)) {
+      return Text('Good Afternoon');
+    } else if ((timeNow > 16) && (timeNow < 20)) {
+      return Text('Good Evening');
+    } else {
+      return Text('Good Night');
+    }
+  }
 
 }

@@ -125,7 +125,6 @@ class _find_location_pageState extends State<find_location_page> {
                     ),
                   ),
                   onTap: (){
-
                     Get.to(duration_section());
                   },
                 ),

@@ -72,13 +72,18 @@ class _signup_pageState extends State<signup_page> {
               const SizedBox(
                 height: 16,
               ),
-              const text_widget(
-                color: 0xffFF9C27B0,
-                fontWeight: FontWeight.w700,
-                textAlign: TextAlign.center,
-                font: "Lato",
-                fontSize: 15,
-                text: "Login to account",
+              InkWell(
+                child: const text_widget(
+                  color: 0xffFF9C27B0,
+                  fontWeight: FontWeight.w700,
+                  textAlign: TextAlign.center,
+                  font: "Lato",
+                  fontSize: 15,
+                  text: "Login to account",
+                ),
+                onTap: (){
+                  Get.back();
+                },
               ),
               const SizedBox(
                 height: 16,
@@ -94,6 +99,7 @@ class _signup_pageState extends State<signup_page> {
                     text: "Create account",
                   ),
                   onTap: () async {
+                    print('---${_formKey.currentState!.value['name']}--${_formKey.currentState!.value['password']}');
                     if(_formKey.currentState!.saveAndValidate()){
                       print(_formKey);
                       api_calls api = api_calls(context);

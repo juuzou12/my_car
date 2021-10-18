@@ -270,7 +270,7 @@ class _walthrough_pageState extends State<walthrough_page> {
                         msg: "Wrong credentials",
                         toastLength: Toast.LENGTH_SHORT,
                         gravity: ToastGravity.CENTER,
-                        timeInSecForIosWeb: 2,
+                        timeInSecForIosWeb: 1,
                         backgroundColor: Colors.green,
                         textColor: Colors.white,
                         fontSize: 16.0

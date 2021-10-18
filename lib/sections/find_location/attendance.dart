@@ -93,7 +93,7 @@ class _attendanceState extends State<attendance> {
             ),
             Lottie.asset('assets/animations/people.json',
                 width: 300,
-                height: 300),
+                height: 250),
             const text_widget(
               color: 0xffFF9C27B0,
               fontWeight: FontWeight.w800,
