@@ -17,6 +17,7 @@ class signup_page extends StatefulWidget{
 }
 
 class _signup_pageState extends State<signup_page> {
+  /*TODO...change the ui of signup, navigation after success, customized loading,change color toast, length of password, show password icon*/
   final _formKey = GlobalKey<FormBuilderState>();
   @override
   Widget build(BuildContext context) {
@@ -107,7 +108,7 @@ class _signup_pageState extends State<signup_page> {
                         /*successful*/
                         api.addUser(_formKey.currentState!.value["name"], _formKey.currentState!.value["password"], (){
                           printError(info: "Registered successfully!!");
-                          Get.to(walthrough_page());
+                          Get.to(walkthrough_page());
                         }, (){
                           printError(info: "Failed to add user!");
                         });}, () {

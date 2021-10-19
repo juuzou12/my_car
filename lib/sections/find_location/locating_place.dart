@@ -194,7 +194,6 @@ class _locating_placeState extends State<locating_place> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     loadingController(message);
   }

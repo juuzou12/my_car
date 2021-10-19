@@ -12,6 +12,9 @@ import 'locating_place.dart';
 import 'payment_section.dart';
 
 class duration_section extends StatefulWidget{
+  final String StandAlone;
+
+  const duration_section({Key? key, required this.StandAlone}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return _duration_sectionState();
@@ -234,7 +237,7 @@ class _duration_sectionState extends State<duration_section> {
                 ),
               )),
               onTap: (){
-                Get.to(const attendance(houseType: 'apartment',));
+                Get.to(const attendance(StandAlone: 'apartment', attendace: "", date: '',));
 
               },
             ),

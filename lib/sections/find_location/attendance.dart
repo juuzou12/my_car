@@ -11,9 +11,9 @@ import 'duration_section.dart';
 import 'locating_place.dart';
 
 class attendance extends StatefulWidget{
-  final String houseType;
+  final String StandAlone,attendace,date;
 
-  const attendance({Key? key, required this.houseType}) : super(key: key);
+  const attendance({Key? key, required this.StandAlone, required this.attendace, required this.date}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return _attendanceState();

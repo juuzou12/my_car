@@ -95,7 +95,7 @@ class _find_location_pageState extends State<find_location_page> {
                     ),
                   ),
                   onTap: (){
-                    Get.to(duration_section());
+                    Get.to(const duration_section(StandAlone: 'standAlong',));
                   },
                 ),
                 InkWell(
@@ -125,7 +125,7 @@ class _find_location_pageState extends State<find_location_page> {
                     ),
                   ),
                   onTap: (){
-                    Get.to(duration_section());
+                    Get.to(duration_section(StandAlone: 'apartment',));
                   },
                 ),
               ],

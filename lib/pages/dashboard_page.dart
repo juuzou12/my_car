@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bnbs_project/functions/local_functions.dart';
+import 'package:bnbs_project/pages/walkthrough_page.dart';
 import 'package:bnbs_project/sections/dashboard/map_section.dart';
 import 'package:bnbs_project/sections/reports/pie_chart.dart';
 import 'package:bnbs_project/widgets/button_widgets.dart';
@@ -892,14 +893,19 @@ class _dashboard_pageState extends State<dashboard_page> {
               height: 20,
             ),
             Row(
-              children: const [
-                text_widget(
-                  color: 0xff707070,
-                  fontWeight: FontWeight.w600,
-                  textAlign: TextAlign.center,
-                  font: "Lato",
-                  fontSize: 16,
-                  text: "Log out",
+              children:  [
+                InkWell(
+                  onTap: (){
+                    Get.offAll(walkthrough_page());
+                  },
+                  child: const text_widget(
+                    color: 0xff707070,
+                    fontWeight: FontWeight.w600,
+                    textAlign: TextAlign.center,
+                    font: "Lato",
+                    fontSize: 16,
+                    text: "Log out",
+                  ),
                 ),
               ],
             ),
@@ -1034,7 +1040,6 @@ class _dashboard_pageState extends State<dashboard_page> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     /*checking the user mode if its business or user..*/
   }

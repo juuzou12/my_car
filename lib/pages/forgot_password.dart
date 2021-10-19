@@ -92,9 +92,11 @@ class _forgotpasswordState extends State<forgot_password> {
                   onTap: (){
                     if(_formKey.currentState!.saveAndValidate()){
                       api_calls api = api_calls(context);
-                      api.sendpasswordresetemail(_formKey.currentState!.value["email"]);
+                      api.sendpasswordresetemail(_formKey.currentState!.value["email"],(){
+
+                      });
                     }
-                    Get.to(walthrough_page());
+                    Get.to(walkthrough_page());
                   },
                 ),
               )),

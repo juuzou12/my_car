@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class api_calls {
 
@@ -15,22 +16,28 @@ class api_calls {
 
   /*login api call.....*/
   void loginUser(String email, String password, successFunction, failedFunction,
-      wrongCred) {
-    firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+      wrongCred,unserNotFound) async{
     try {
-      if (firebaseAuth.currentUser != null) {
+      UserCredential userCredential= await firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+      if(userCredential.user!.email==email){
         successFunction();
-      } else {
-        failedFunction();
       }
-    } on FirebaseAuthException catch (exception) {
-      print('This is a fail $exception');
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+        unserNotFound();
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+        wrongCred();
+      }
     }
+
   }
 
   /*createUser api call.....*/
   void createUser(String email, String password, successFunction,
       failedFunction) async {
+    /*TODO...implement userCred for creating account*/
     try {
       var result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
@@ -38,6 +45,15 @@ class api_calls {
         successFunction();
       }
     } on FirebaseAuthException catch (e) {
+      print("Firebase exception");
+      print(e.toString());
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+
+      } else if (e.code == 'email-already-in-use') {
+        print('The account already exists for that email.');
+
+      }
       failedFunction();
     }
   }
@@ -55,32 +71,39 @@ class api_calls {
   }
 
   /*reset password api call....*/
-  void sendpasswordresetemail(String email) async{
-    final results= await _auth.sendPasswordResetEmail(email: email);
-    Navigator.of(context).pop();
+  Future sendpasswordresetemail(String email,navigationFunction) async{
+    var results= await _auth.sendPasswordResetEmail(email: email);
+    navigationFunction();
   }
 
-  Future<void> addItem(final String StandAlone, final String Apartment, final String active,
+  Future<void> requestCall(final String StandAlone, final String Apartment, final String active,
       final String duration, final String companyState, final String companyNo, final String paymentMethod)
   async {
-    DocumentReference documentReference = FirebaseFirestore.instance.collection('users').doc(firebaseAuth.currentUser!.uid).collection('request').doc();
-    Map<String, dynamic> data = <String, dynamic>{
-      "houseType": StandAlone,
-      "purpose": Apartment,
-      "duration": duration,
-      "companyState": companyState,
-      "companyNo": companyNo,
-      "paymentMethod": paymentMethod,
-      "status" : active,
-    };
-    await documentReference
-        .set(data)
-        .whenComplete(() => print("Preferences added"))
-        .catchError((e) => print(e));
+    var uuid=firebaseAuth.currentUser!.uid+DateTime.now().microsecondsSinceEpoch.toString();
+    try{
+      DocumentReference documentReference = FirebaseFirestore.instance.collection('users').doc(firebaseAuth.currentUser!.uid).collection('request').doc(uuid);
+      Map<String, dynamic> data = <String, dynamic>{
+        "houseType": StandAlone,
+        "purpose": Apartment,
+        "duration": duration,
+        "companyState": companyState,
+        "companyNo": companyNo,
+        "paymentMethod": paymentMethod,
+        "status" : active,
+        "uid":uuid
+      };
+      await documentReference
+          .set(data)
+          .whenComplete(() => print("Preferences added"))
+          .catchError((e) => print(e));
+    } on FirebaseAuthException catch(e){
+      print("-----$e");
+    }
   }
 
   Future<void> addHome(final String HomeDetails, final String OwnerDetails, final Payment)async
   {
+    /*TODO....the same as for the find location (requestCall)*/
     DocumentReference documentReference = FirebaseFirestore.instance.collection('users').doc(firebaseAuth.currentUser!.uid).collection('Home').doc();
     Map<String, dynamic> data = <String, dynamic>{
       "homeDetails": HomeDetails,

@@ -14,15 +14,15 @@ import 'package:lottie/lottie.dart';
 import 'dashboard_page.dart';
 import 'signup_page.dart';
 
-class walthrough_page extends StatefulWidget{
+class walkthrough_page extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
-    return _walthrough_pageState();
+    return _walkthrough_pageState();
   }
 
 }
 
-class _walthrough_pageState extends State<walthrough_page> {
+class _walkthrough_pageState extends State<walkthrough_page> {
   final _formKey = GlobalKey<FormBuilderState>();
   Location location = new Location();
 
@@ -37,7 +37,7 @@ class _walthrough_pageState extends State<walthrough_page> {
     }
     print("-----$_locationData-------");
   }
-
+  bool isLoading=false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -136,6 +136,7 @@ class _walthrough_pageState extends State<walthrough_page> {
   }
 
   /*login page screen*/
+  /*TODO.... add the show password icon,change toast color,target the length of password*/
   Widget loginScreen(){
     return SizedBox(
       width: Get.width,
@@ -190,7 +191,7 @@ class _walthrough_pageState extends State<walthrough_page> {
             const SizedBox(
               height: 30,
             ),
-            Row(
+            isLoading==false?Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children:  [
                  InkWell(
@@ -220,11 +221,11 @@ class _walthrough_pageState extends State<walthrough_page> {
                   },
                 ),
               ],
-            ),
+            ):const SizedBox(),
             const SizedBox(
               height: 30,
             ),
-            InkWell(
+            isLoading==false?InkWell(
               child: const button_widgets(color:0xffe1163c,height: 60,width: 150,radius: 10,borderColor: 0xffFF9C27B0,widget:Center(
                 child: text_widget(
                   color: 0xffFFFFFF,
@@ -237,6 +238,10 @@ class _walthrough_pageState extends State<walthrough_page> {
               )),
               onTap: (){
                 if(_formKey.currentState!.saveAndValidate()) {
+                  setState(() {
+                    isLoading=true;
+                  });
+                  print("${_formKey.currentState!.value['name']}=---${_formKey.currentState!.value['password']}");
                   /*login logic*/
                   api_calls api=api_calls(context);
                   api.loginUser(_formKey.currentState!.value["name"], _formKey.currentState!.value["password"], (){
@@ -251,6 +256,10 @@ class _walthrough_pageState extends State<walthrough_page> {
                         textColor: Colors.white,
                         fontSize: 16.0
                     );
+                    setState(() {
+                      isLoading=false;
+                    });
+                    getCurrentLocation();
                   }, (){
                     /*failedFunction*/
                     printError(info: "Unsuccessful login");
@@ -263,9 +272,15 @@ class _walthrough_pageState extends State<walthrough_page> {
                         textColor: Colors.white,
                         fontSize: 16.0
                     );
+                    setState(() {
+                      isLoading=false;
+                    });
                   }, (){
                     /*wrongCredentialsFunction*/
                     printError(info: "Wrong credentials");
+                    setState(() {
+                      isLoading=false;
+                    });
                     Fluttertoast.showToast(
                         msg: "Wrong credentials",
                         toastLength: Toast.LENGTH_SHORT,
@@ -275,10 +290,28 @@ class _walthrough_pageState extends State<walthrough_page> {
                         textColor: Colors.white,
                         fontSize: 16.0
                     );
+                  },(){
+                    /*user not found*/
+                    printError(info: "Wrong credentials");
+                    setState(() {
+                      isLoading=false;
+                    });
+                    Fluttertoast.showToast(
+                        msg: "Create an account. User not found",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.green,
+                        textColor: Colors.white,
+                        fontSize: 16.0
+                    );
                   });
-                  getCurrentLocation();
+
                 }
               },
+            ):const CircularProgressIndicator(
+              backgroundColor: Color(0xfff1f1f1),
+              color: Colors.purple,
             ),
 
           ],
@@ -289,7 +322,6 @@ class _walthrough_pageState extends State<walthrough_page> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 }

@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: "/",
       getPages: [
-        GetPage(name: "/", page: ()=> walthrough_page()),
+        GetPage(name: "/", page: ()=> walkthrough_page()),
       ],
     );
   }
