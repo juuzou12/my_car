@@ -17,6 +17,7 @@ class owner_details extends StatefulWidget{
 }
 
 class _owner_detailsStae extends State<owner_details> {
+  api_calls api = api_calls();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,7 +73,7 @@ class _owner_detailsStae extends State<owner_details> {
                         formType: "text",dropDownList: [],
                         iconButton: IconButton(
                             icon: Icon(Icons.person),
-                            onPressed: () {}),),
+                            onPressed: () {}), showPassword: false,),
                       const SizedBox(
                         height: 16,
                       ),
@@ -81,7 +82,7 @@ class _owner_detailsStae extends State<owner_details> {
                           formType: "text",dropDownList: [],
                         iconButton: IconButton(
                             icon: Icon(Icons.email_outlined),
-                            onPressed: () {}),),
+                            onPressed: () {}), showPassword: false,),
                       const SizedBox(
                         height: 16,
                       ),
@@ -90,7 +91,7 @@ class _owner_detailsStae extends State<owner_details> {
                           formType: "text",dropDownList: [],
                         iconButton: IconButton(
                             icon: Icon(Icons.phone),
-                            onPressed: () {}),),
+                            onPressed: () {}), showPassword: false,),
                     ]
                 ),
               ),
@@ -107,7 +108,7 @@ class _owner_detailsStae extends State<owner_details> {
                   ),
                 )),
                 onTap: (){
-                  api_calls api = api_calls(context);
+
                   api.addHome('', '', '');
                   Get.to(const payment_section(state: "addHomePayment", company: '', people: '', attendance: '', date: '', StandAlone: 'apartment',));
                 },

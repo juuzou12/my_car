@@ -22,10 +22,12 @@ class _signup_pageState extends State<signup_page> {
   /*TODO...change the ui of signup, navigation after success, customized loading,change color toast, length of password, show password icon*/
   bool isLoading = false;
   bool passwordVisible = false;
+  api_calls api = api_calls();
 
   final _formKey = GlobalKey<FormBuilderState>();
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         backgroundColor: Colors.white,
         body: Center(
@@ -78,7 +80,7 @@ class _signup_pageState extends State<signup_page> {
                       formType: "text",dropDownList: [],
                   iconButton: IconButton(
                       icon: Icon(Icons.email),
-                      onPressed: () {}),
+                      onPressed: () {}), showPassword: passwordVisible,
                     ),
                      const SizedBox(
                       height: 16,
@@ -90,10 +92,12 @@ class _signup_pageState extends State<signup_page> {
                           icon: Icon(
                               passwordVisible ? Icons.visibility : Icons.visibility_off),
                           onPressed: () {
-                            setState(() {
-                              passwordVisible = !passwordVisible;
+                            passwordVisible ?setState(() {
+                              passwordVisible = true;
+                            }):setState(() {
+                              passwordVisible = false;
                             });
-                          }),
+                          }), showPassword: passwordVisible,
                     )
                   ]
               ),
@@ -142,55 +146,7 @@ class _signup_pageState extends State<signup_page> {
                   });
                   print(_formKey);
                   /*logic for register*/
-                  api_calls api = api_calls(context);
-                  api.createUser(_formKey.currentState!.value["name"], _formKey.currentState!.value["password"], (){
-                    /*successful*/
-                    api.addUser(_formKey.currentState!.value["name"], _formKey.currentState!.value["password"], (){
-                      printError(info: "Registered successfully!!");
-                      Fluttertoast.showToast(
-                          msg: "Registered successfully!!",
-                          toastLength: Toast.LENGTH_SHORT,
-                          gravity: ToastGravity.CENTER,
-                          timeInSecForIosWeb: 1,
-                          backgroundColor: Colors.purple,
-                          textColor: Colors.white,
-                          fontSize: 16.0
-                      );
-                      setState(() {
-                        isLoading=false;
-                      });
-                      Get.back();
-                    }, (){
-                      /*Failed Function To addUser*/
-                      printError(info: "Failed to register. Try again!");
-                      Fluttertoast.showToast(
-                          msg: "Failed to register. Try again!",
-                          toastLength: Toast.LENGTH_SHORT,
-                          gravity: ToastGravity.CENTER,
-                          timeInSecForIosWeb: 1,
-                          backgroundColor: Colors.purple,
-                          textColor: Colors.white,
-                          fontSize: 16.0
-                      );
-                      setState(() {
-                        isLoading=false;
-                      });
-                    });}, () {
-                    /*failedFunction to createUser*/
-                    printError(info: "Oops! Something went wrong. Try again!");
-                    Fluttertoast.showToast(
-                        msg: "Oops! Something went wrong. Try again!",
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.CENTER,
-                        timeInSecForIosWeb: 1,
-                        backgroundColor: Colors.purple,
-                        textColor: Colors.white,
-                        fontSize: 16.0
-                    );
-                    setState(() {
-                      isLoading=false;
-                    });
-                  });
+
                 }
               },
             ):const CircularProgressIndicator(
@@ -201,6 +157,31 @@ class _signup_pageState extends State<signup_page> {
         ),
       ),
     );
+  }
+
+  /*create email and password...TODO complete the process of on boarding*/
+  void createEmailPasswords(String email,String password,String name){
+    api.createUser(email, password, (){
+      /*successFunction........add user details to the backend firebase*/
+      addedUserDetailsToDatabase(name);
+
+    }, (){
+      /*failedFunction*/
+    }, (){
+      /*weekPassword*/
+    }, (){
+      /*userFound*/
+    });
+  }
+
+  /*added user to the backend.....after createEmailPassword successful*/
+  void addedUserDetailsToDatabase(String name){
+    api.addUser(name, (){
+      /*successFunction*/
+
+    }, (){
+      /*failedFunction*/
+    });
   }
 
   @override

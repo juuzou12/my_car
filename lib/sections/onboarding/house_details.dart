@@ -66,13 +66,14 @@ class _house_detailsState extends State<house_details> {
               const SizedBox(height: 20,),
               FormBuilder(
                 child: Column(
+                  /*TODO.... change the showPassword state*/
                     children: [
                       formbuildtextfield(height: 50,color: 0xff000000,hintText:"Enter building name" ,attribute: "name",
                         dividerColor:0xffFFFFFF ,errorText:"Enter building name" ,font: "Lato",keybordType: TextInputType.name,fontWeight:FontWeight.w400 ,fontSize: 15.0,
                         formType: "text",dropDownList: [],
                         iconButton: IconButton(
                             icon: Icon(Icons.person),
-                            onPressed: () {}),),
+                            onPressed: () {}), showPassword: false,),
                       const SizedBox(
                         height: 16,
                       ),
@@ -81,7 +82,7 @@ class _house_detailsState extends State<house_details> {
                           formType: "text",dropDownList: [],
                         iconButton: IconButton(
                             icon: Icon(Icons.phone),
-                            onPressed: () {}),),
+                            onPressed: () {}), showPassword: false,),
                       const SizedBox(
                         height: 16,
                       ),
@@ -90,7 +91,7 @@ class _house_detailsState extends State<house_details> {
                           formType: "text",dropDownList: [],
                         iconButton: IconButton(
                             icon: Icon(Icons.phone),
-                            onPressed: () {}),),
+                            onPressed: () {}), showPassword: false,),
                     ]
                 ),
               ),

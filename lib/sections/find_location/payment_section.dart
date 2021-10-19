@@ -23,6 +23,7 @@ class payment_section extends StatefulWidget{
 }
 
 class _payment_sectionState extends State<payment_section> {
+  api_calls api = api_calls();
   List<dynamic>paymentMethod=[
     {
       "value":"m-pesa",
@@ -154,7 +155,7 @@ class _payment_sectionState extends State<payment_section> {
               )),
               onTap: (){
                 /*TODO....check form builder textforms...pass data from all other pages to hte call bellow...*/
-                api_calls api = api_calls(context);
+
                 api.requestCall('', '', '', 'null', '', '', 'active');
                 getCurrentLocation();
               },

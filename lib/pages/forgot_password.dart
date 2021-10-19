@@ -18,6 +18,7 @@ class forgot_password extends StatefulWidget {
 
 class _forgotpasswordState extends State<forgot_password> {
   final _formKey = GlobalKey<FormBuilderState>();
+  api_calls api = api_calls();
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +76,7 @@ class _forgotpasswordState extends State<forgot_password> {
                           formType: "text",dropDownList: [],
                         iconButton: IconButton(
                             icon: Icon(Icons.email),
-                            onPressed: () {}),),
+                            onPressed: () {}), showPassword: false,),
                     ]
                 ),
               ),
@@ -94,7 +95,7 @@ class _forgotpasswordState extends State<forgot_password> {
                   ),
                   onTap: (){
                     if(_formKey.currentState!.saveAndValidate()){
-                      api_calls api = api_calls(context);
+
                       api.sendpasswordresetemail(_formKey.currentState!.value["email"],(){
 
                       });

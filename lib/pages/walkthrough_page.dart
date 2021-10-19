@@ -30,6 +30,7 @@ class _walkthrough_pageState extends State<walkthrough_page> {
   PermissionStatus? _permissionGranted;
   LocationData? _locationData;
 
+  api_calls api = api_calls();
   /*getting the your current location*/
   void getCurrentLocation() async {
     _locationData = await location.getLocation();
@@ -179,6 +180,7 @@ class _walkthrough_pageState extends State<walkthrough_page> {
             const SizedBox(height: 40,),
             FormBuilder(
               child: Column(
+                /*TODO....same as we did for the signup and all the hard coded showPassword bools*/
                   children: [
                     formbuildtextfield(height: 50,
                         color: 0xff000000,
@@ -194,7 +196,7 @@ class _walkthrough_pageState extends State<walkthrough_page> {
                         dropDownList: [],
                   iconButton: IconButton(
                       icon: Icon(Icons.email),
-                      onPressed: () {}),),
+                      onPressed: () {}), showPassword: false,),
                     const SizedBox(
                       height: 16,
                     ),
@@ -217,7 +219,7 @@ class _walkthrough_pageState extends State<walkthrough_page> {
                             setState(() {
                               passwordVisible = !passwordVisible;
                             });
-                          }),
+                          }), showPassword: false,
                     )
                   ]
               ),
@@ -284,7 +286,7 @@ class _walkthrough_pageState extends State<walkthrough_page> {
                   print("${_formKey.currentState!.value['name']}=---${_formKey
                       .currentState!.value['password']}");
                   /*login logic*/
-                  api_calls api = api_calls(context);
+
                   api.loginUser(_formKey.currentState!.value["name"],
                       _formKey.currentState!.value["password"], () {
                         /*successfulFunction*/
@@ -372,4 +374,7 @@ class _walkthrough_pageState extends State<walkthrough_page> {
     );
   }
 
+  /*TODO.....hide keyboard when login signup button is clicked...*/
+  /*Solution under this url
+  * https://stackoverflow.com/questions/44991968/how-can-i-dismiss-the-on-screen-keyboard*/
 }
