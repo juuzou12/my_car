@@ -66,22 +66,31 @@ class _owner_detailsStae extends State<owner_details> {
               const SizedBox(height: 20,),
               FormBuilder(
                 child: Column(
-                    children: const [
+                    children: [
                       formbuildtextfield(height: 50,color: 0xff000000,hintText:"Owners Name" ,attribute: "name",
                         dividerColor:0xffFFFFFF ,errorText:"Owners Name" ,font: "Lato",keybordType: TextInputType.emailAddress,fontWeight:FontWeight.w400 ,fontSize: 15.0,
-                        formType: "text",dropDownList: [],),
-                      SizedBox(
+                        formType: "text",dropDownList: [],
+                        iconButton: IconButton(
+                            icon: Icon(Icons.person),
+                            onPressed: () {}),),
+                      const SizedBox(
                         height: 16,
                       ),
                       formbuildtextfield(height: 50,color: 0xff000000,hintText:"Owners Email" ,attribute: "password",
                           dividerColor:0xffFFFFFF ,errorText:"Enter Owners Email" ,font: "Lato",keybordType: TextInputType.text,fontWeight:FontWeight.w400 ,fontSize: 15.0,
-                          formType: "text",dropDownList: []),
-                      SizedBox(
+                          formType: "text",dropDownList: [],
+                        iconButton: IconButton(
+                            icon: Icon(Icons.email_outlined),
+                            onPressed: () {}),),
+                      const SizedBox(
                         height: 16,
                       ),
                       formbuildtextfield(height: 50,color: 0xff000000,hintText:"Owners Number" ,attribute: "password",
                           dividerColor:0xffFFFFFF ,errorText:"Enter Owners Number" ,font: "Lato",keybordType: TextInputType.number,fontWeight:FontWeight.w400 ,fontSize: 15.0,
-                          formType: "text",dropDownList: []),
+                          formType: "text",dropDownList: [],
+                        iconButton: IconButton(
+                            icon: Icon(Icons.phone),
+                            onPressed: () {}),),
                     ]
                 ),
               ),
@@ -100,7 +109,7 @@ class _owner_detailsStae extends State<owner_details> {
                 onTap: (){
                   api_calls api = api_calls(context);
                   api.addHome('', '', '');
-                  Get.to(const payment_section(state: "addHomePayment",));
+                  Get.to(const payment_section(state: "addHomePayment", company: '', people: '', attendance: '', date: '', StandAlone: 'apartment',));
                 },
               ),
             ],

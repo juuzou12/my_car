@@ -11,9 +11,10 @@ import 'package:location/location.dart';
 import 'package:lottie/lottie.dart';
 
 class payment_section extends StatefulWidget{
+  final String StandAlone,attendance,date, company, people;
   final String state;
 
-  const payment_section({Key? key, required this.state}) : super(key: key);
+  const payment_section({Key? key, required this.state, required this.StandAlone, required this.attendance, required this.date, required this.company, required this.people}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return _payment_sectionState();

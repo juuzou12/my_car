@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       title: 'BnBs',
 
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.purple,
       ),
       initialRoute: "/",
       getPages: [

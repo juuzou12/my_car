@@ -66,22 +66,31 @@ class _house_detailsState extends State<house_details> {
               const SizedBox(height: 20,),
               FormBuilder(
                 child: Column(
-                    children: const [
+                    children: [
                       formbuildtextfield(height: 50,color: 0xff000000,hintText:"Enter building name" ,attribute: "name",
                         dividerColor:0xffFFFFFF ,errorText:"Enter building name" ,font: "Lato",keybordType: TextInputType.name,fontWeight:FontWeight.w400 ,fontSize: 15.0,
-                        formType: "text",dropDownList: [],),
-                      SizedBox(
+                        formType: "text",dropDownList: [],
+                        iconButton: IconButton(
+                            icon: Icon(Icons.person),
+                            onPressed: () {}),),
+                      const SizedBox(
                         height: 16,
                       ),
                       formbuildtextfield(height: 50,color: 0xff000000,hintText:"Enter house number" ,attribute: "password",
                           dividerColor:0xffFFFFFF ,errorText:"Enter house number" ,font: "Lato",keybordType: TextInputType.text,fontWeight:FontWeight.w400 ,fontSize: 15.0,
-                          formType: "text",dropDownList: []),
-                      SizedBox(
+                          formType: "text",dropDownList: [],
+                        iconButton: IconButton(
+                            icon: Icon(Icons.phone),
+                            onPressed: () {}),),
+                      const SizedBox(
                         height: 16,
                       ),
                       formbuildtextfield(height: 50,color: 0xff000000,hintText:"Business Number" ,attribute: "password",
                           dividerColor:0xffFFFFFF ,errorText:"Enter Business Number" ,font: "Lato",keybordType: TextInputType.number,fontWeight:FontWeight.w400 ,fontSize: 15.0,
-                          formType: "text",dropDownList: []),
+                          formType: "text",dropDownList: [],
+                        iconButton: IconButton(
+                            icon: Icon(Icons.phone),
+                            onPressed: () {}),),
                     ]
                 ),
               ),

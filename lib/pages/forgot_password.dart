@@ -69,10 +69,13 @@ class _forgotpasswordState extends State<forgot_password> {
               ),
               FormBuilder(
                 child: Column(
-                    children: const [
-                      formbuildtextfield(height: 50,color: 0xff000000,hintText:"sample@email.com" ,attribute: "name",
+                    children: [
+                      formbuildtextfield(height: 50,color: 0xff000000,hintText:"sample@gmail.com" ,attribute: "name",
                           dividerColor:0xffFFFFFF ,errorText:"Enter an email first" ,font: "Lato",keybordType: TextInputType.emailAddress,fontWeight:FontWeight.w400 ,fontSize: 15.0,
-                          formType: "text",dropDownList: []),
+                          formType: "text",dropDownList: [],
+                        iconButton: IconButton(
+                            icon: Icon(Icons.email),
+                            onPressed: () {}),),
                     ]
                 ),
               ),

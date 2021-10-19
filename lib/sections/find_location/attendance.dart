@@ -248,7 +248,7 @@ class _attendanceState extends State<attendance> {
                 ),
               )),
               onTap: (){
-                Get.to(locating_place());
+                Get.to(const locating_place(people: '', StandAlone: 'apartment', date: '', company: '', attendace: '',));
               },
             ),
             const Expanded(child: SizedBox(height: 50,)),

@@ -8,6 +8,9 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 class locating_place extends StatefulWidget{
+  final String StandAlone,attendace,date, company, people;
+
+  const locating_place({Key? key, required this.StandAlone, required this.attendace, required this.date, required this.company, required this.people}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return _locating_placeState();
@@ -186,7 +189,7 @@ class _locating_placeState extends State<locating_place> {
           ),
         ),
         onTap: (){
-          Get.to(const payment_section(state: "paymentForHome",));
+          Get.to(const payment_section(state: "paymentForHome", attendance: '', people: '', StandAlone: 'apartment', company: '', date: '',));
         },
       ),
     );

@@ -39,9 +39,8 @@ class api_calls {
       failedFunction) async {
     /*TODO...implement userCred for creating account*/
     try {
-      var result = await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
-      if (firebaseAuth.currentUser!.uid != null) {
+      UserCredential userCredential= await firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
+      if (userCredential.user!.uid!= null) {
         successFunction();
       }
     } on FirebaseAuthException catch (e) {
@@ -49,10 +48,8 @@ class api_calls {
       print(e.toString());
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
-
       } else if (e.code == 'email-already-in-use') {
         print('The account already exists for that email.');
-
       }
       failedFunction();
     }
@@ -104,16 +101,20 @@ class api_calls {
   Future<void> addHome(final String HomeDetails, final String OwnerDetails, final Payment)async
   {
     /*TODO....the same as for the find location (requestCall)*/
-    DocumentReference documentReference = FirebaseFirestore.instance.collection('users').doc(firebaseAuth.currentUser!.uid).collection('Home').doc();
-    Map<String, dynamic> data = <String, dynamic>{
-      "homeDetails": HomeDetails,
-      "ownerDetails": OwnerDetails,
-      "payment": Payment,
-    };
-    await documentReference
-        .set(data)
-        .whenComplete(() => print("Preferences added"))
-        .catchError((e) => print(e));
+    try {
+      DocumentReference documentReference = FirebaseFirestore.instance.collection('users').doc(firebaseAuth.currentUser!.uid).collection('Home').doc();
+      Map<String, dynamic> data = <String, dynamic>{
+        "homeDetails": HomeDetails,
+        "ownerDetails": OwnerDetails,
+        "payment": Payment,
+      };
+      await documentReference
+          .set(data)
+          .whenComplete(() => print("Home added"))
+          .catchError((e) => print(e));
+    } on FirebaseAuthException catch(e){
+      print("-----$e");
+    }
   }
 
 }
