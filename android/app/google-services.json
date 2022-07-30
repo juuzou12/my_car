@@ -1,33 +1,207 @@
 {
   "project_info": {
-    "project_number": "483132066233",
-    "project_id": "bnbs-a245d",
-    "storage_bucket": "bnbs-a245d.appspot.com"
+    "project_number": "687354346124",
+    "project_id": "shoppy-af664",
+    "storage_bucket": "shoppy-af664.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:483132066233:android:ed0366c1530d01fa6cce68",
+        "mobilesdk_app_id": "1:687354346124:android:461eb675d9a2972cb519a9",
         "android_client_info": {
           "package_name": "com.example.bnbs_project"
         }
       },
       "oauth_client": [
         {
-          "client_id": "483132066233-1fid11qlgu7vclbtd9mfdfu1026ovas2.apps.googleusercontent.com",
+          "client_id": "687354346124-ane7jttf2nalsnortdp4jiojvoftjjo4.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCyARJOy3lEpj8ZGYFtLt0_hmpsZ8dtz1Y"
+          "current_key": "AIzaSyBXq-Nspt4k23AnjH4wZqLXbI-4a1LIst0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "483132066233-1fid11qlgu7vclbtd9mfdfu1026ovas2.apps.googleusercontent.com",
+              "client_id": "687354346124-ane7jttf2nalsnortdp4jiojvoftjjo4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:687354346124:android:204ac00d535aafa1b519a9",
+        "android_client_info": {
+          "package_name": "com.example.projects"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "687354346124-ane7jttf2nalsnortdp4jiojvoftjjo4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXq-Nspt4k23AnjH4wZqLXbI-4a1LIst0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "687354346124-ane7jttf2nalsnortdp4jiojvoftjjo4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:687354346124:android:2c6841a880ebd1efb519a9",
+        "android_client_info": {
+          "package_name": "com.example.setup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "687354346124-ane7jttf2nalsnortdp4jiojvoftjjo4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXq-Nspt4k23AnjH4wZqLXbI-4a1LIst0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "687354346124-ane7jttf2nalsnortdp4jiojvoftjjo4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:687354346124:android:4e4a97e8e8052575b519a9",
+        "android_client_info": {
+          "package_name": "com.example.shoppi_business"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "687354346124-ane7jttf2nalsnortdp4jiojvoftjjo4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXq-Nspt4k23AnjH4wZqLXbI-4a1LIst0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "687354346124-ane7jttf2nalsnortdp4jiojvoftjjo4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:687354346124:android:9abb54a332b4b824b519a9",
+        "android_client_info": {
+          "package_name": "com.example.shoppie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "687354346124-ane7jttf2nalsnortdp4jiojvoftjjo4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXq-Nspt4k23AnjH4wZqLXbI-4a1LIst0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "687354346124-ane7jttf2nalsnortdp4jiojvoftjjo4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:687354346124:android:45798b88b354c42ab519a9",
+        "android_client_info": {
+          "package_name": "com.example.shoppy_b"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "687354346124-ane7jttf2nalsnortdp4jiojvoftjjo4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXq-Nspt4k23AnjH4wZqLXbI-4a1LIst0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "687354346124-ane7jttf2nalsnortdp4jiojvoftjjo4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:687354346124:android:bc7e57537afdd71bb519a9",
+        "android_client_info": {
+          "package_name": "com.example.stylish_business"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "687354346124-ane7jttf2nalsnortdp4jiojvoftjjo4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXq-Nspt4k23AnjH4wZqLXbI-4a1LIst0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "687354346124-ane7jttf2nalsnortdp4jiojvoftjjo4.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

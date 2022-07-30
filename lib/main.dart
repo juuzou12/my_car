@@ -1,7 +1,9 @@
-import 'package:bnbs_project/pages/walkthrough_page.dart';
+import 'package:bnbs_project/maps_controller.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'Maps.dart';
 
 void main() {
   initializeDefault();
@@ -21,17 +23,19 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    Get.put(MapsControllers());
     return GetMaterialApp(
-      title: 'BnBs',
-
+      title: 'Delyva',
       theme: ThemeData(
-        primarySwatch: Colors.purple,
+        primarySwatch: Colors.grey,
       ),
+      themeMode: ThemeMode.dark,
+      darkTheme: ThemeData.dark(),
+      debugShowCheckedModeBanner: false,
       initialRoute: "/",
       getPages: [
-        GetPage(name: "/", page: ()=> walkthrough_page()),
+        GetPage(name: "/", page: () => Maps()),
       ],
     );
   }
 }
-
